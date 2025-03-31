@@ -1,10 +1,20 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { assets } from "@/assets/assets";
-
 const NavBar = () => {
   const sideBarRef = useRef<HTMLUListElement>(null);
+  const [scrolling, setScrolling] = useState<boolean>(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (scrollY > 50) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    });
+  }, []);
 
   const openSideBar = () => {
     if (sideBarRef.current) {
@@ -22,7 +32,11 @@ const NavBar = () => {
       <div className="fixed top-0 right-0 w-11/12 -z-10 traslate-y-[-80%]">
         <Image src={assets.header_bg_color} alt="" className="w-full" />
       </div>
-      <nav className="w-full fixed px-5 lg:px-8 xl:p x-[8%] my-4 flex items-center justify-between z-50">
+      <nav
+        className={`w-full fixed px-5 lg:px-8 xl:p x-[8%] my-4 flex items-center justify-between z-50 ${
+          scrolling ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm" : ""
+        }`}
+      >
         <a href="">
           <Image src={assets.logo} alt="" className="w-28 cursor-pointer mr-14" />
         </a>
@@ -32,17 +46,17 @@ const NavBar = () => {
             <a href="#top">Home</a>
           </li>
           <li>
-            <a className="font-Ovo" href="#top">
+            <a className="font-Ovo" href="#about">
               About me
             </a>
           </li>
           <li>
-            <a className="font-Ovo" href="#top">
+            <a className="font-Ovo" href="#services">
               Services
             </a>
           </li>
           <li>
-            <a className="font-Ovo" href="#top">
+            <a className="font-Ovo" href="#work">
               My Work
             </a>
           </li>
@@ -77,6 +91,7 @@ const NavBar = () => {
         </div>
 
         {/*----Mobile menu------*/}
+
         <ul
           ref={sideBarRef}
           className="flex items-center md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 z-50 -right-64 bg-rose-50 h-screen transition duration-500 ease-in-out"
@@ -84,26 +99,26 @@ const NavBar = () => {
           <div className="absolute top-6 right-6" onClick={closeSideBar}>
             <Image src={assets.close_black} alt="" className="w-5 cursor-pointer" />
           </div>
-          <li className="font-Ovo">
+          <li onClick={closeSideBar} className="font-Ovo">
             <a href="#top">Home</a>
           </li>
-          <li>
-            <a className="font-Ovo" href="#top">
+          <li onClick={closeSideBar}>
+            <a className="font-Ovo" href="#about">
               About me
             </a>
           </li>
-          <li>
-            <a className="font-Ovo" href="#top">
+          <li onClick={closeSideBar}>
+            <a className="font-Ovo" href="#services">
               Services
             </a>
           </li>
-          <li>
-            <a className="font-Ovo" href="#top">
+          <li onClick={closeSideBar}>
+            <a className="font-Ovo" href="#work">
               My Work
             </a>
           </li>
-          <li>
-            <a className="font-Ovo" href="#top">
+          <li onClick={closeSideBar}>
+            <a className="font-Ovo" href="#contact-me">
               Contact me
             </a>
           </li>
