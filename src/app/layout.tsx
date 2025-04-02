@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Ovo } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const outFit = Outfit({
@@ -24,8 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outFit.className} ${ovo.className} antialiased leading-4 2xl:leading-8 overflow-x-hidden`}>
-        {children}
+      <body
+        className={`${outFit.className} ${ovo.className} antialiased leading-4 2xl:leading-8 overflow-x-hidden`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

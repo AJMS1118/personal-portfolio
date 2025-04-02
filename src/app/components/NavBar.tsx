@@ -1,11 +1,15 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "../context/ThemeContext";
+import { ThemeToggle } from "./ui/ToogleTheme";
 import Image from "next/image";
 import { assets } from "@/assets/assets";
+
 const NavBar = () => {
   const sideBarRef = useRef<HTMLUListElement>(null);
   const [scrolling, setScrolling] = useState<boolean>(false);
-
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (scrollY > 50) {
@@ -38,10 +42,18 @@ const NavBar = () => {
         }`}
       >
         <a href="">
-          <Image src={assets.logo} alt="" className="w-28 cursor-pointer mr-14" />
+          <Image
+            src={assets.logo}
+            alt=""
+            className="w-28 cursor-pointer mr-14"
+          />
         </a>
 
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50">
+        <ul
+          className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${
+            isDark ? "bg-black" : "bg-white"
+          } shadow-sm bg-opacity-50`}
+        >
           <li className="font-Ovo">
             <a href="#top">Home</a>
           </li>
@@ -75,15 +87,16 @@ const NavBar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button>
+          <ThemeToggle />
+          {/* <button onClick={toggleTheme}>
             <Image src={assets.moon_icon} className="w-6" alt="" />
-          </button>
-          <a
+          </button> */}
+          {/* <a
             href=""
             className="hidden lg:flex items-center gap-3 px-10 py-2.5 border rounded-full border-gray-500  ml-4"
           >
             Contact <Image src={assets.arrow_icon} alt="" className="w-3" />
-          </a>
+          </a> */}
 
           <button className="block md:hidden" onClick={openSideBar}>
             <Image src={assets.menu_black} alt="" className="w-6" />
@@ -97,7 +110,11 @@ const NavBar = () => {
           className="flex items-center md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 z-50 -right-64 bg-rose-50 h-screen transition duration-500 ease-in-out"
         >
           <div className="absolute top-6 right-6" onClick={closeSideBar}>
-            <Image src={assets.close_black} alt="" className="w-5 cursor-pointer" />
+            <Image
+              src={assets.close_black}
+              alt=""
+              className="w-5 cursor-pointer"
+            />
           </div>
           <li onClick={closeSideBar} className="font-Ovo">
             <a href="#top">Home</a>
