@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { assets, serviceData } from "@/assets/assets";
 
@@ -22,9 +23,9 @@ const Services = () => {
               <Image src={icon} alt="" className="w-10" />
               <h3 className="text-lg my-4 text-gray-700">{title}</h3>
               <p className="text-sm text-gray-600 leading-5 text-left">{description}</p>
-              <a href={link} className="flex items-center gap-1 mt-3">
+              <Link href={`${title}`} className="flex items-center gap-1 mt-3">
                 Read more <Image src={assets.right_arrow} alt="" className="w-4 mt-0.5" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
