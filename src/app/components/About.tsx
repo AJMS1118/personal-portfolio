@@ -1,11 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import { assets, infoList, toolsData } from "@/assets/assets";
-
+import { useTheme } from "../context/ThemeContext";
 const About = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   return (
     <>
-      <div id="about" className="w-full px-[12%] py-10 scroll-mt-20">
+      <div id="about" className={`w-full px-[12%] py-10 scroll-mt-20 ${isDark ? "bg-gray-800 text-white" : ""}`}>
         <h4 className="text-center text-lg mb-2 font-Ovo">Introduction</h4>
         <h2 className="text-center text-5xl font-Ovo">About me</h2>
         <div className="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
