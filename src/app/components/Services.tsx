@@ -15,7 +15,7 @@ const Services = () => {
         </p>
 
         <div className="grid grid-cols-auto gap-6 my-10">
-          {serviceData.map(({ id, title, link, icon, description }) => (
+          {serviceData.map(({ id, title, icon, description }) => (
             <div
               className="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black hover:bg-lightHover hover:-translate-y-1 duration-500 cursor-pointer"
               key={id}
