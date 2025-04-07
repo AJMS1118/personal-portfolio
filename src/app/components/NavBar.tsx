@@ -38,7 +38,7 @@ const NavBar = () => {
       </div>
       <nav
         className={`w-full fixed px-5 lg:px-8 xl:p x-[8%] my-4 flex items-center justify-between z-50 ${
-          scrolling ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm" : ""
+          scrolling ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-xs" : ""
         }`}
       >
         <a href="">
